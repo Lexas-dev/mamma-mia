@@ -40,7 +40,7 @@ const Cart = () => {
   return (
     <div className="container my-5" style={{ maxWidth: '600px' }}>
       <h3 className="mb-4">Detalles del pedido:</h3>
-      
+
       {cart.length === 0 ? (
         <p className="text-muted">Tu carrito está vacío.</p>
       ) : (
@@ -49,9 +49,9 @@ const Cart = () => {
             <div key={pizza.id} className="d-flex justify-content-between align-items-center mb-3">
               {/* Lado izquierdo: Imagen pequeña y Nombre capitalizado */}
               <div className="d-flex align-items-center gap-3">
-                <img 
-                  src={pizza.img} 
-                  alt={pizza.name} 
+                <img
+                  src={pizza.img}
+                  alt={pizza.name}
                   className="rounded"
                   style={{ width: '50px', height: '50px', objectFit: 'cover' }}
                 />
@@ -61,15 +61,15 @@ const Cart = () => {
               {/* Lado derecho: Precio, botón -, cantidad, botón + */}
               <div className="d-flex align-items-center gap-2">
                 <span className="me-2">${formatPrice(pizza.price)}</span>
-                <button 
-                  className="btn btn-outline-danger btn-sm" 
+                <button
+                  className="btn btn-outline-danger btn-sm"
                   onClick={() => decreaseCount(pizza.id)}
                 >
                   -
                 </button>
                 <span className="fw-semibold px-1">{pizza.count}</span>
-                <button 
-                  className="btn btn-outline-primary btn-sm" 
+                <button
+                  className="btn btn-outline-primary btn-sm"
                   onClick={() => increaseCount(pizza.id)}
                 >
                   +

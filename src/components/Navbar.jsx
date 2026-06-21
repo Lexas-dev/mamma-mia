@@ -1,4 +1,5 @@
 import { formatPrice } from '../utils/format';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const total = 25000;
@@ -7,9 +8,9 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-3 shadow">
       <div className="container-fluid">
-        <span className="navbar-brand fw-bold text-white me-4" style={{ cursor: 'pointer' }}>
+        <Link to="/" className="navbar-brand fw-bold text-white me-4" style={{ textDecoration: 'none' }}>
           Pizzería Mamma Mia!
-        </span>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -24,16 +25,16 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
             <li className="nav-item">
-              <button className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
+              <Link to="/" className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
                 🍕 Home
-              </button>
+              </Link>
             </li>
             {token ? (
               <>
                 <li className="nav-item">
-                  <button className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
+                  <Link to="/profile" className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
                     🔓 Profile
-                  </button>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <button className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
@@ -44,22 +45,22 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <button className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
+                  <Link to="/login" className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
                     🔐 Login
-                  </button>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <button className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
+                  <Link to="/register" className="btn btn-outline-light btn-sm text-white border-secondary px-3 py-2">
                     🔐 Register
-                  </button>
+                  </Link>
                 </li>
               </>
             )}
           </ul>
           <div className="d-flex">
-            <button className="btn btn-outline-info btn-sm text-info border-info fw-bold px-3 py-2">
+            <Link to="/cart" className="btn btn-outline-info btn-sm text-info border-info fw-bold px-3 py-2">
               🛒 Total: ${formatPrice(total)}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
