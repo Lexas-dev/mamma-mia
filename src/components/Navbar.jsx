@@ -1,8 +1,10 @@
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils/format';
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const total = 25000;
+  const { total } = useContext(CartContext);
   const token = false;
 
   return (

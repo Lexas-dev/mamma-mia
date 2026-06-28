@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils/format';
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ id, name, price, ingredients, img }) => {
+  const { addToCart } = useContext(CartContext);
   return (
     <div className="card">
       <img src={img} className="card-img-top" alt={name} />
@@ -26,7 +29,7 @@ const CardPizza = ({ name, price, ingredients, img }) => {
           <h2 className="text-dark pb-3">Precio: ${formatPrice(price)}</h2>
           <div className="d-flex justify-content-between">
             <button className="btn btn-light border">Ver Más 👀</button>
-            <button className="btn btn-dark">Añadir 🛒</button>
+            <button className="btn btn-dark" onClick={() => addToCart({ id, name, price, img, ingredients })}>Añadir 🛒</button>
           </div>
         </div>
       </div>

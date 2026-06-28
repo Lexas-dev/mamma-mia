@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils/format';
 
 const Pizza = () => {
   const [pizza, setPizza] = useState({});
+  const { addToCart } = useContext(CartContext);
 
   const getPizza = async () => {
     try {
@@ -69,7 +71,7 @@ const Pizza = () => {
                     ${formatPrice(pizza.price)}
                   </span>
                 </div>
-                <button className="btn btn-dark btn-lg px-4 py-2 shadow-sm rounded-pill hover-zoom">
+                <button className="btn btn-dark btn-lg px-4 py-2 shadow-sm rounded-pill hover-zoom" onClick={() => addToCart(pizza)}>
                   Añadir al Carrito 🛒
                 </button>
               </div>

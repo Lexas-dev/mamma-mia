@@ -1,41 +1,9 @@
-import { useState } from 'react';
-import { pizzaCart } from '../data/pizzas';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils/format';
 
 const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
-
-  // Incrementar la cantidad de una pizza
-  const increaseCount = (id) => {
-    const updatedCart = cart.map((pizza) => {
-      if (pizza.id === id) {
-        return { ...pizza, count: pizza.count + 1 };
-      }
-      return pizza;
-    });
-    setCart(updatedCart);
-  };
-
-  // Decrementar la cantidad de una pizza (eliminar si llega a 0)
-  const decreaseCount = (id) => {
-    const pizzaToDecrease = cart.find((pizza) => pizza.id === id);
-    if (pizzaToDecrease && pizzaToDecrease.count === 1) {
-      // Usar filter para eliminar la pizza del estado
-      const filteredCart = cart.filter((pizza) => pizza.id !== id);
-      setCart(filteredCart);
-    } else {
-      const updatedCart = cart.map((pizza) => {
-        if (pizza.id === id) {
-          return { ...pizza, count: pizza.count - 1 };
-        }
-        return pizza;
-      });
-      setCart(updatedCart);
-    }
-  };
-
-  // Calcular el total
-  const total = cart.reduce((sum, pizza) => sum + pizza.price * pizza.count, 0);
+  const { cart, increaseCount, decreaseCount, total } = useContext(CartContext);
 
   return (
     <div className="container my-5" style={{ maxWidth: '600px' }}>

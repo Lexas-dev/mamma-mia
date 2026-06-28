@@ -1,23 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { PizzaContext } from '../context/PizzaContext';
 import Header from '../components/Header';
 import CardPizza from '../components/CardPizza';
 
 const Home = () => {
-  const [pizzas, setPizzas] = useState([]);
-
-  const getPizzas = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/pizzas');
-      const data = await response.json();
-      setPizzas(data);
-    } catch (error) {
-      console.error('Error fetching pizzas:', error);
-    }
-  };
-
-  useEffect(() => {
-    getPizzas();
-  }, []);
+  const { pizzas } = useContext(PizzaContext);
 
   return (
     <>
@@ -28,6 +15,7 @@ const Home = () => {
           {pizzas.map((pizza) => (
             <div className="col-12 col-md-4" key={pizza.id}>
               <CardPizza
+                id={pizza.id}
                 name={pizza.name}
                 price={pizza.price}
                 ingredients={pizza.ingredients}
