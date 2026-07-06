@@ -1,14 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils/format';
 
 const Pizza = () => {
   const [pizza, setPizza] = useState({});
   const { addToCart } = useContext(CartContext);
+  const { id } = useParams();
 
   const getPizza = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/pizzas/p001');
+      const response = await fetch(`http://localhost:5000/api/pizzas/${id}`);
       const data = await response.json();
       setPizza(data);
     } catch (error) {
@@ -18,7 +20,7 @@ const Pizza = () => {
 
   useEffect(() => {
     getPizza();
-  }, []);
+  }, [id]);
 
   if (!pizza.id) {
     return (

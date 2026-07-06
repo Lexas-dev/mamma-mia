@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils/format';
+import { Link } from 'react-router-dom';
 
 const CardPizza = ({ id, name, price, ingredients, img }) => {
   const { addToCart } = useContext(CartContext);
@@ -28,7 +29,7 @@ const CardPizza = ({ id, name, price, ingredients, img }) => {
         <div className="text-center py-2">
           <h2 className="text-dark pb-3">Precio: ${formatPrice(price)}</h2>
           <div className="d-flex justify-content-between">
-            <button className="btn btn-light border">Ver Más 👀</button>
+            <Link to={`/pizza/${id}`} className="btn btn-light border">Ver Más 👀</Link>
             <button className="btn btn-dark" onClick={() => addToCart({ id, name, price, img, ingredients })}>Añadir 🛒</button>
           </div>
         </div>
