@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { token, login } = useContext(UserContext);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!email || !password) {
@@ -15,7 +17,11 @@ const Login = () => {
             alert('La contraseña debe tener al menos 6 caracteres.');
             return;
         }
-        alert('¡Inicio de sesión exitoso!');
+        
+        const success = await login(email, password);
+        if (success) {
+            alert('¡Inicio de sesión exitoso!');
+        }
     };
 
     return (

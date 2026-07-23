@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 const Register = () => {
     // Estados para guardar lo que el usuario escribe
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const { token, register } = useContext(UserContext);
 
     // Función que se ejecuta al enviar el formulario
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault(); // Evita que la página se recargue por defecto
 
         // Validaciones
@@ -27,7 +29,10 @@ const Register = () => {
         }
 
         // Si pasa todas las validaciones con éxito
-        alert('¡Registro exitoso!');
+        const success = await register(email, password);
+        if (success) {
+            alert('¡Registro exitoso!');
+        }
     };
 
     return (

@@ -47,6 +47,8 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = () => setCart([]);
+
   const total = cart.reduce((sum, pizza) => sum + pizza.price * pizza.count, 0);
 
   return (
@@ -57,6 +59,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         increaseCount,
         decreaseCount,
+        clearCart,
         total,
       }}
     >
